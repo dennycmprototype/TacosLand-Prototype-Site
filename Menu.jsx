@@ -1,21 +1,13 @@
 /* eslint-disable no-undef */
 const MENU_ITEMS = [
-  // TACOS
-  { id: 'pastor',    cat: 'Tacos',     name: 'Al Pastor',         price: 4.50,  desc: 'Marinated pork off the trompo, pineapple, cilantro, onion.', tags: ['fav'],  img: 1 },
-  { id: 'asada',     cat: 'Tacos',     name: 'Carne Asada',        price: 4.50,  desc: 'Charred skirt steak, salsa verde, white onion.',              tags: [],       img: 2 },
-  { id: 'carnitas',  cat: 'Tacos',     name: 'Carnitas',           price: 4.25,  desc: 'Slow-cooked pork shoulder, crisped on the edges.',            tags: [],       img: 0 },
-  { id: 'fish',      cat: 'Tacos',     name: 'Fish Tacos',         price: 11.00, desc: 'Crispy panko fish, slaw, salsa verde. Plate of three.',       tags: ['fav'],  img: 1 },
-  { id: 'quesa',     cat: 'Tacos',     name: 'Quesabirria',        price: 14.25, desc: 'Birria + melted Oaxaca on a crisped tortilla. With consommé.',tags: ['fav','spicy'], img: 2 },
-  { id: 'flautas',   cat: 'Tacos',     name: 'Flautas',            price: 11.00, desc: '3 deep-fried chicken tacos. Crema, lettuce, salsa, pickled onion, guac.', tags: [], img: 0 },
-
   // BREAKFAST
   { id: 'bf-taco',   cat: 'Breakfast', name: 'Breakfast Taco',     price: 5.00,  desc: 'Scrambled eggs, your protein, monterey, queso fresco, pickled onion, pico.', tags: [], img: 0 },
   { id: 'machaca',   cat: 'Breakfast', name: 'Machaca BF Burrito', price: 13.50, desc: 'Machaca, bell peppers, scrambled eggs, refried beans, monterey.', tags: [], img: 3 },
   { id: 'carn-bf',   cat: 'Breakfast', name: 'Carnitas BF Burrito',price: 13.00, desc: 'Carnitas, eggs, refried beans, monterey, jack, pico.',        tags: [],       img: 5 },
   { id: 'jumbo-bf',  cat: 'Breakfast', name: 'Jumbo BF Burrito',   price: 13.50, desc: 'Eggs, refried beans, hashbrowns, monterey, caramelized onion, two proteins.', tags: ['fav'], img: 3 },
-  { id: 'classic-bf',cat: 'Breakfast', name: 'Classic BF Burrito', price: 12.50, desc: 'Eggs, refried beans, hashbrowns, bacon, cheese — wrapped in foil.', tags: [], img: 5 },
+  { id: 'classic-bf',cat: 'Breakfast', name: 'Breakfast Classic Burrito', price: 12.50, desc: 'Eggs, refried beans, hashbrowns, bacon, cheese — wrapped in foil.', tags: [], img: 5 },
   { id: 'chila',     cat: 'Breakfast', name: 'Chilaquiles Plate',  price: 13.50, desc: 'Fried tortilla, green or red house sauce, cilantro, onion, crema, queso fresco, beans, eggs to order, half birote.', tags: ['fav'], img: 0 },
-  { id: 'omelette',  cat: 'Breakfast', name: 'Mexican Omelette',   price: 13.50, desc: 'Choice of protein in eggs, pico, guac, cheese. With hashbrowns + refried beans.', tags: [], img: 4 },
+  { id: 'omelette',  cat: 'Breakfast', name: 'Mexican Omelette Plate', price: 13.50, desc: 'Choice of protein in eggs, pico, guac, cheese. With hashbrowns + refried beans.', tags: [], img: 4 },
 
   // BOWLS
   { id: 'fajita',    cat: 'Bowls',     name: 'Fajita Bowl',        price: 12.00, desc: 'Chicken, steak (+$1) or shrimp (+$2) over rice, beans, chunky salsa, lettuce, pico, guac, sour cream.', tags: ['fav'], img: 4 },
@@ -33,12 +25,13 @@ const MENU_ITEMS = [
   { id: 'sope',      cat: 'Bites',     name: 'Sope',               price: 4.75,  desc: 'Corn masa base, refried beans, protein, lettuce, salsa, pico, crema, queso fresco, pickled onion.', tags: [], img: 1 },
   { id: 'kids',      cat: 'Bites',     name: 'Kids Plate',         price: 9.00,  desc: 'Kids enchilada, burrito, plain street taco, or cheese quesadilla. Side of fries or rice & beans.', tags: [], img: 5 },
   { id: 'poppers',   cat: 'Bites',     name: 'Jalapeño Poppers',   price: 10.00, desc: 'Cream-cheese-filled panko-breaded jalapeños. (6)', tags: ['spicy','veg'], img: 5 },
+  { id: 'flautas',   cat: 'Bites',     name: 'Flautas',            price: 11.00, desc: '3 deep-fried chicken tacos, crema, lettuce, table salsa, pickled onion, guac.', tags: [], img: 0 },
 ];
 
 const Menu = ({ cart, onAdd, onNavigate }) => {
   const { Button, Pill, PHONE, FOOD_PHOTOS, Reveal } = window.TLC;
   const [cat, setCat] = React.useState('All');
-  const cats = ['All', 'Tacos', 'Breakfast', 'Bowls', 'Bites'];
+  const cats = ['All', 'Breakfast', 'Bowls', 'Bites'];
   const items = cat === 'All' ? MENU_ITEMS : MENU_ITEMS.filter(i => i.cat === cat);
   const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
 

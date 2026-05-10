@@ -10,10 +10,10 @@ const Home = ({ onNavigate, onAddSpecial }) => {
   }, []);
 
   const previews = [
-    { id: 'quesabirria', name: 'Quesabirria',  price: '$14.25', desc: 'Birria + melted Oaxaca, crisped tortilla, consommé.', img: 2, rot: -1, tag: 'fav' },
-    { id: 'wet',         name: 'Wet Burrito',   price: '$13.50', desc: 'Crema, cheese, pickled onion, pico — all over.',     img: 3, rot:  1, tag: 'fav' },
-    { id: 'fish',        name: 'Fish Tacos',    price: '$11.00', desc: 'Crispy panko fish, slaw, salsa verde.',                img: 1, rot: -1, tag: null },
-    { id: 'fajita',      name: 'Fajita Bowl',   price: '$12.00', desc: 'Steak or chicken over rice, guac, sour cream.',       img: 4, rot:  1, tag: null },
+    { id: 'chila',       name: 'Chilaquiles Plate', price: '$13.50', desc: 'Fried tortilla in green or red house sauce, crema, queso fresco, eggs to order.', img: 0, rot: -1, tag: 'fav' },
+    { id: 'birria-r',    name: 'Birria Ramen Bowl', price: '$12.50', desc: 'Birria consommé and protein over ramen, cilantro, pickled onion.',                img: 2, rot:  1, tag: 'fav' },
+    { id: 'fries',       name: 'Loaded Fries',      price: '$13.00', desc: 'Fries topped with your protein, cheddar, guac, sour cream, pico.',                img: 5, rot: -1, tag: 'fav' },
+    { id: 'fajita',      name: 'Fajita Bowl',       price: '$12.00', desc: 'Chicken, steak, or shrimp over rice, beans, pico, guac, sour cream.',             img: 4, rot:  1, tag: 'fav' },
   ];
 
   const reviews = [
