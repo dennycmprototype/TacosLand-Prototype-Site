@@ -1,0 +1,193 @@
+/* =========================================================================
+   TacosLand — Colors & Type
+   The single source of truth for color tokens, type tokens, and semantic
+   styles. Import once at the top of any page:
+     <link rel="stylesheet" href="colors_and_type.css">
+   ========================================================================= */
+
+/* --- Webfonts -------------------------------------------------------------
+   We rely on Google Fonts. If you ship offline, drop the .woff2 files into
+   /fonts and switch this @import for local @font-face rules.
+   ------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Lilita+One&family=Nunito:wght@400;600;700;800&family=Sacramento&display=swap');
+
+/* =========================================================================
+   1. Color tokens
+   ========================================================================= */
+:root {
+  /* Primary — drawn from the logo */
+  --salsa-orange: #E2852A;     /* taco illustration */
+  --chile-pink:   #F42C6E;     /* the "LAND" wordmark */
+  --cilantro-green:#2DB84A;    /* the "TACOS" wordmark */
+
+  /* Secondary */
+  --teal-squeeze: #0ABAB5;     /* radiating rays */
+  --masa-cream:   #FFF5E6;     /* page base — sun-bleached stucco */
+  --corn-gold:    #F5C842;     /* warm highlight, ratings, sun motifs */
+
+  /* Neutrals (warm) */
+  --adobe-brown:  #3B2314;     /* primary text — never #000 */
+  --terracotta:   #C4613A;     /* secondary text, captions */
+  --sand-light:   #F0E3CC;     /* card backgrounds, subtle contrast */
+  --guac-dark:    #1A3A2A;     /* nav, footer, dark sections */
+
+  /* Tints / shades for hover and surfaces */
+  --chile-pink-dark:   #C81F58;
+  --salsa-orange-dark: #C26E1E;
+  --cilantro-green-dark:#229A3C;
+  --masa-cream-soft:   #FBE9CF;
+
+  /* Semantic */
+  --color-bg:           var(--masa-cream);
+  --color-bg-alt:       var(--sand-light);
+  --color-bg-dark:      var(--guac-dark);
+  --color-surface:      #FFFBF2;
+  --color-fg:           var(--adobe-brown);
+  --color-fg-muted:     var(--terracotta);
+  --color-fg-on-dark:   var(--masa-cream);
+  --color-fg-on-orange: var(--masa-cream);
+  --color-accent:       var(--chile-pink);
+  --color-accent-2:     var(--cilantro-green);
+  --color-accent-3:     var(--teal-squeeze);
+  --color-warning:      var(--corn-gold);
+  --color-success:      var(--cilantro-green);
+  --color-danger:       var(--chile-pink);
+  --color-border:       var(--salsa-orange);
+  --color-border-soft:  rgba(59,35,20,0.12);
+
+  /* Border + radius + shadow */
+  --border-thick: 3px solid var(--salsa-orange);
+  --border-thin:  2px solid var(--adobe-brown);
+  --radius-sm: 4px;
+  --radius-md: 6px;     /* standard buttons, inputs */
+  --radius-lg: 12px;    /* cards */
+  --radius-xl: 24px;    /* big banners, badges */
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 2px 0 0 rgba(59,35,20,0.10);
+  --shadow-md: 0 6px 18px -6px rgba(196,97,58,0.35), 0 2px 0 0 rgba(59,35,20,0.10);
+  --shadow-lg: 0 24px 40px -16px rgba(59,35,20,0.30);
+  --shadow-stamp: 4px 4px 0 0 var(--adobe-brown);
+
+  /* Spacing scale (8px base, generous) */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10:120px;
+
+  /* Layout */
+  --content-max: 1200px;
+
+  /* Motion */
+  --ease-warm: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+  --dur-slow: 450ms;
+}
+
+/* =========================================================================
+   2. Typography tokens
+   ========================================================================= */
+:root {
+  --font-display: "Passion One", Impact, "Arial Black", sans-serif;
+  --font-subhead: "Lilita One", "Arial Black", sans-serif;
+  --font-body:    "Nunito", Verdana, system-ui, sans-serif;
+  --font-script:  "Sacramento", "Brush Script MT", cursive;
+
+  /* Type scale (display is loud — go big) */
+  --fs-display-xl: clamp(64px, 9vw, 128px);
+  --fs-display-lg: clamp(48px, 6vw, 88px);
+  --fs-h1:         clamp(40px, 5vw, 72px);
+  --fs-h2:         clamp(32px, 3.6vw, 52px);
+  --fs-h3:         28px;
+  --fs-h4:         22px;
+  --fs-eyebrow:    14px;
+  --fs-body-lg:    18px;
+  --fs-body:       16px;
+  --fs-caption:    13px;
+
+  --tracking-loose: 0.08em;
+  --tracking-wide:  0.04em;
+  --tracking-cta:   0.06em;
+}
+
+/* =========================================================================
+   3. Base + semantic styles
+   ========================================================================= */
+html, body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+  font-family: var(--font-display);
+  color: var(--color-fg);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+
+h1, .h1 { font-size: var(--fs-h1); font-weight: 900; letter-spacing: var(--tracking-loose); }
+h2, .h2 { font-size: var(--fs-h2); font-weight: 700; }
+h3, .h3 { font-size: var(--fs-h3); font-family: var(--font-subhead); text-transform: none; letter-spacing: 0; }
+h4, .h4 { font-size: var(--fs-h4); font-family: var(--font-subhead); text-transform: none; letter-spacing: 0; }
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-loose);
+  font-size: var(--fs-display-lg);
+  line-height: 0.9;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tracking-cta);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 1.6em;
+  line-height: 1;
+  color: var(--chile-pink);
+}
+
+p, .body { font-size: var(--fs-body); line-height: 1.6; max-width: 65ch; text-wrap: pretty; }
+.body-lg { font-size: var(--fs-body-lg); line-height: 1.6; }
+.caption { font-size: var(--fs-caption); color: var(--color-fg-muted); }
+
+a { color: var(--chile-pink); text-decoration: underline; text-underline-offset: 2px; }
+a:hover { color: var(--chile-pink-dark); }
+
+code, .mono {
+  font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  background: var(--sand-light);
+  color: var(--adobe-brown);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+/* Reusable text-on-color rules */
+.on-orange { color: var(--masa-cream); }
+.on-dark   { color: var(--masa-cream); }
+.on-cream  { color: var(--adobe-brown); }
