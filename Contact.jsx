@@ -30,7 +30,7 @@ const Contact = ({ onNavigate }) => {
               <h3 style={{ fontFamily: 'var(--font-subhead)', fontSize: 22, margin: '0 0 8px', color: 'var(--adobe-brown)' }}>Visit</h3>
               <div style={{ fontSize: 16, lineHeight: 1.55, color: 'var(--adobe-brown)' }}>
                 {ADDRESS_1}<br/>{ADDRESS_2}<br/>
-                <span style={{ color: 'var(--terracotta)' }}>Look for the orange door.</span>
+                <span style={{ color: 'var(--terracotta)' }}>We&rsquo;re just a few steps from QFC. Look for the sugar skull door and our big colorful sign!</span>
               </div>
             </Block>
 
