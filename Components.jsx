@@ -152,63 +152,72 @@ const Nav = ({ active, onNavigate, cartCount = 0 }) => {
     <nav style={{
       background: 'var(--guac-dark)', color: 'var(--masa-cream)',
       padding: '14px 28px',
-      display: 'flex', alignItems: 'center', gap: 18,
       position: 'sticky', top: 0, zIndex: 50,
       boxShadow: '0 4px 18px -8px rgba(0,0,0,0.4)',
-      flexWrap: 'wrap',
     }}>
-      <div onClick={() => handleNav('home')}
-           style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }}>
-        <div style={{ width: 52, height: 52, display: 'grid', placeItems: 'center' }}>
-          <img src="assets/logo.png" alt="TacosLand" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      {/* Top row: logo, links, buttons, hamburger */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+        <div onClick={() => handleNav('home')}
+             style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }}>
+          <div style={{ width: 52, height: 52, display: 'grid', placeItems: 'center' }}>
+            <img src="assets/logo.png" alt="TacosLand" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          </div>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, letterSpacing: '0.06em', lineHeight: 1 }}>
+            <span style={{ color: 'var(--cilantro-green)' }}>TACOS</span>
+            <span style={{ color: 'var(--chile-pink)' }}>LAND</span>
+          </div>
         </div>
-        <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, letterSpacing: '0.06em', lineHeight: 1 }}>
-          <span style={{ color: 'var(--cilantro-green)' }}>TACOS</span>
-          <span style={{ color: 'var(--chile-pink)' }}>LAND</span>
+
+        <div className="nav-links" style={{ display: 'flex', gap: 22, marginLeft: 14, flex: 1 }}>
+          {links.map(l => (
+            <a key={l.id} onClick={() => handleNav(l.id)} style={{
+              color: active === l.id ? 'var(--corn-gold)' : 'var(--masa-cream)',
+              textDecoration: 'none',
+              fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13,
+              letterSpacing: '0.06em', textTransform: 'uppercase',
+              cursor: 'pointer', paddingBottom: 4,
+              borderBottom: active === l.id ? '3px solid var(--corn-gold)' : '3px solid transparent',
+            }}>{l.label}</a>
+          ))}
         </div>
+
+        <a href={`tel:${PHONE.replace(/[^0-9+]/g, '')}`} className="nav-phone" style={{
+          color: 'var(--corn-gold)', fontFamily: 'var(--font-body)', fontWeight: 800,
+          fontSize: 13, letterSpacing: '0.04em', textDecoration: 'none',
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+        }}>
+          <PhoneIcon size={14} />{PHONE}
+        </a>
+        <Button variant="green" onClick={() => handleNav('catering')} className="nav-cater" style={{ padding: '12px 18px', fontSize: 12 }}>
+          Catering →
+        </Button>
+        <Button variant="primary" onClick={() => handleNav('order')} className="nav-cart-btn nav-cart-desktop" style={{ padding: '12px 22px', fontSize: 13 }}>
+          {cartCount > 0 ? `Cart · ${cartCount}` : 'Order online'}
+        </Button>
+
+        {/* Hamburger button — visible only on mobile via CSS */}
+        <button className="nav-hamburger" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu" style={{
+          display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 8,
+          flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 5,
+          marginLeft: 'auto',
+        }}>
+          <span style={{ display: 'block', width: 24, height: 3, borderRadius: 2, background: 'var(--masa-cream)', transition: 'transform 300ms, opacity 200ms', transform: mobileOpen ? 'translateY(8px) rotate(45deg)' : 'none' }} />
+          <span style={{ display: 'block', width: 24, height: 3, borderRadius: 2, background: 'var(--masa-cream)', transition: 'opacity 200ms', opacity: mobileOpen ? 0 : 1 }} />
+          <span style={{ display: 'block', width: 24, height: 3, borderRadius: 2, background: 'var(--masa-cream)', transition: 'transform 300ms, opacity 200ms', transform: mobileOpen ? 'translateY(-8px) rotate(-45deg)' : 'none' }} />
+        </button>
       </div>
 
-      <div className="nav-links" style={{ display: 'flex', gap: 22, marginLeft: 14, flex: 1 }}>
-        {links.map(l => (
-          <a key={l.id} onClick={() => handleNav(l.id)} style={{
-            color: active === l.id ? 'var(--corn-gold)' : 'var(--masa-cream)',
-            textDecoration: 'none',
-            fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13,
-            letterSpacing: '0.06em', textTransform: 'uppercase',
-            cursor: 'pointer', paddingBottom: 4,
-            borderBottom: active === l.id ? '3px solid var(--corn-gold)' : '3px solid transparent',
-          }}>{l.label}</a>
-        ))}
+      {/* Mobile Order button — full width, below top row */}
+      <div className="nav-cart-mobile" style={{ display: 'none', paddingTop: 12 }}>
+        <Button variant="primary" onClick={() => handleNav('order')} style={{ width: '100%', justifyContent: 'center', fontSize: 13 }}>
+          {cartCount > 0 ? `Cart · ${cartCount}` : 'Order online'}
+        </Button>
       </div>
-
-      <a href={`tel:${PHONE.replace(/[^0-9+]/g, '')}`} className="nav-phone" style={{
-        color: 'var(--corn-gold)', fontFamily: 'var(--font-body)', fontWeight: 800,
-        fontSize: 13, letterSpacing: '0.04em', textDecoration: 'none',
-        display: 'inline-flex', alignItems: 'center', gap: 6,
-      }}>
-        <PhoneIcon size={14} />{PHONE}
-      </a>
-      <Button variant="green" onClick={() => handleNav('catering')} className="nav-cater" style={{ padding: '12px 18px', fontSize: 12 }}>
-        Catering →
-      </Button>
-      <Button variant="primary" onClick={() => handleNav('order')} className="nav-cart-btn" style={{ padding: '12px 22px', fontSize: 13 }}>
-        {cartCount > 0 ? `Cart · ${cartCount}` : 'Order online'}
-      </Button>
-
-      {/* Hamburger button — visible only on mobile via CSS */}
-      <button className="nav-hamburger" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu" style={{
-        display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 8,
-        flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 5,
-      }}>
-        <span style={{ display: 'block', width: 24, height: 3, borderRadius: 2, background: 'var(--masa-cream)', transition: 'transform 300ms, opacity 200ms', transform: mobileOpen ? 'translateY(8px) rotate(45deg)' : 'none' }} />
-        <span style={{ display: 'block', width: 24, height: 3, borderRadius: 2, background: 'var(--masa-cream)', transition: 'opacity 200ms', opacity: mobileOpen ? 0 : 1 }} />
-        <span style={{ display: 'block', width: 24, height: 3, borderRadius: 2, background: 'var(--masa-cream)', transition: 'transform 300ms, opacity 200ms', transform: mobileOpen ? 'translateY(-8px) rotate(-45deg)' : 'none' }} />
-      </button>
 
       {/* Mobile drawer */}
       {mobileOpen && (
         <div className="nav-mobile-menu" style={{
-          flexBasis: '100%', display: 'flex', flexDirection: 'column', gap: 4,
+          display: 'flex', flexDirection: 'column', gap: 4,
           padding: '14px 0 10px', borderTop: '1px solid rgba(255,255,255,0.12)', marginTop: 8,
         }}>
           {links.map(l => (
